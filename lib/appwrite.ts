@@ -64,7 +64,7 @@ export async function logout() {
   }
 }
 
-export async function getUser() {
+export async function getCurrentUser() {
   try {
     const response = await account.get();
 
@@ -78,5 +78,6 @@ export async function getUser() {
     }
   } catch (error) {
     console.error(error);
+    return null;
   }
 }
