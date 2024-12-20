@@ -11,7 +11,7 @@ interface User {
 
 interface GobalContextType {
   isLoggedIn: boolean;
-  user: User | null;
+  user: User | null | undefined;
   loading: boolean;
   refetch: (newParams?: Record<string, string | number>) => Promise<void>;
 }

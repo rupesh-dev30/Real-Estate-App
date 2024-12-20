@@ -11,12 +11,13 @@ interface UseAppwriteReturn<T, P> {
   data: T | null;
   loading: boolean;
   error: string | null;
-  refetch: (newParams: P) => Promise<void>;
+  refetch: (newParams?: P) => Promise<void>;
 }
 
+// Custom React hook for managing Appwrite API calls with state handling
 export const useAppwrite = <T, P extends Record<string, string | number>>({
-  fn,
-  params = {} as P,
+  fn, // The asynchronous function to fetch data
+  params = {} as P, // Default fetch parameters (empty object cast to type `P`).
   skip = false,
 }: UseAppwriteOptions<T, P>): UseAppwriteReturn<T, P> => {
   const [data, setData] = useState<T | null>(null);
@@ -40,16 +41,18 @@ export const useAppwrite = <T, P extends Record<string, string | number>>({
         setLoading(false);
       }
     },
-    [fn]
+    [fn] // Memoize the function to ensure stability unless `fn` changes.
   );
 
+  // Automatically fetch data on component mount, unless `skip` is true
   useEffect(() => {
     if (!skip) {
       fetchData(params);
     }
   }, []);
 
-  const refetch = async (newParams: P) => await fetchData(newParams);
+  // Refetch function to fetch data with new parameters
+  const refetch = async (newParams?: P) => await fetchData(newParams!);
 
   return { data, loading, error, refetch };
 };
