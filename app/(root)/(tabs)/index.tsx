@@ -2,10 +2,8 @@ import { FeaturedCard, RegularCard } from "@/components/Card";
 import Filter from "@/components/Filter";
 import Search from "@/components/Search";
 import icons from "@/constants/icons";
-import images from "@/constants/images";
 import { useGlobalContext } from "@/lib/global-provider";
-import seed from "@/lib/seed";
-import { Button, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
@@ -13,7 +11,6 @@ export default function Index() {
 
   return (
     <SafeAreaView className="bg-white h-full">
-      <Button title="seed" onPress={seed}></Button>
       <FlatList
         data={[1, 2, 3, 4, 5]}
         renderItem={({ item }) => <RegularCard />}
