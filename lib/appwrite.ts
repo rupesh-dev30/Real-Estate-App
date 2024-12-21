@@ -97,6 +97,20 @@ export async function getCurrentUser() {
   }
 }
 
+export async function getPropertyById({ id }: { id: string }) {
+  try {
+    const result = await databases.getDocument(
+      config.databaseId!,
+      config.propertiesCollectionId!,
+      id
+    );
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 export async function getLatestProperties() {
   try {
     const result = await databases.listDocuments(
