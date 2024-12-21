@@ -137,7 +137,7 @@ export async function getProperties({
       );
     }
 
-    if(limit) buildQuery.push(Query.limit(limit));
+    if (limit) buildQuery.push(Query.limit(limit));
 
     const result = await databases.listDocuments(
       config.databaseId!,
@@ -147,7 +147,7 @@ export async function getProperties({
 
     return result.documents;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching properties: ", error);
     return [];
   }
 }

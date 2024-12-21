@@ -11,7 +11,7 @@ export default function Search() {
 
   const debounced = useDebouncedCallback(
     (text: string) => router.setParams({ query: text }),
-    1000
+    500
   );
 
   const handleSearch = (text: string) => {
